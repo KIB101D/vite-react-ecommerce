@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "categoryId": "electronics",
+    "title": "Laptop",
+    "price": 1200,
+    "image": "/images/products/laptop.png"
+  },
+  {
+    "id": 2,
+    "categoryId": "electronics",
+    "title": "Smartphone",
+    "price": 800,
+    "image": "/images/products/smartphone.png"
+  },
+  {
+    "id": 3,
+    "categoryId": "electronics",
+    "title": "Headphones",
+    "price": 150,
+    "image": "/images/products/headphones.png"
+  },
+  {
+    "id": 4,
+    "categoryId": "electronics",
+    "title": "Monitor",
+    "price": 300,
+    "image": "/images/products/monitor.png"
+  },
+
+  {
+    "id": 5,
+    "categoryId": "clothing",
+    "title": "T-Shirt",
+    "price": 20,
+    "image": "/images/products/t-shirt.png"
+  },
+  {
+    "id": 6,
+    "categoryId": "clothing",
+    "title": "Jeans",
+    "price": 50,
+    "image": "/images/products/jeans.png"
+  },
+  {
+    "id": 7,
+    "categoryId": "clothing",
+    "title": "Jacket",
+    "price": 100,
+    "image": "/images/products/jacket.png"
+  },
+  {
+    "id": 8,
+    "categoryId": "clothing",
+    "title": "Sneakers",
+    "price": 70,
+    "image": "/images/products/sneakers.png"
+  },
+
+  {
+    "id": 9,
+    "categoryId": "books",
+    "title": "Novel",
+    "price": 15,
+    "image": "/images/products/novel.png"
+  },
+  {
+    "id": 10,
+    "categoryId": "books",
+    "title": "Textbook",
+    "price": 40,
+    "image": "/images/products/textbook.png"
+  },
+  {
+    "id": 11,
+    "categoryId": "books",
+    "title": "Magazine",
+    "price": 10,
+    "image": "/images/products/magazine.png"
+  },
+  {
+    "id": 12,
+    "categoryId": "books",
+    "title": "Comic Book",
+    "price": 12,
+    "image": "/images/products/comicBook.png"
+  },
+
+  {
+    "id": 13,
+    "categoryId": "furniture",
+    "title": "Desk Chair",
+    "price": 200,
+    "image": "/images/products/deskChair.png"
+  },
+  {
+    "id": 14,
+    "categoryId": "furniture",
+    "title": "Table",
+    "price": 150,
+    "image": "/images/products/table.png"
+  },
+  {
+    "id": 15,
+    "categoryId": "furniture",
+    "title": "Bookshelf",
+    "price": 120,
+    "image": "/images/products/bookshelf.png"
+  },
+  {
+    "id": 16,
+    "categoryId": "furniture",
+    "title": "Lamp",
+    "price": 80,
+    "image": "/images/products/lamp.png"
+  },
+
+  {
+    "id": 17,
+    "categoryId": "games",
+    "title": "The Man Disk",
+    "price": 30,
+    "image": "/images/products/TheManDisk.png"
+  },
+  {
+    "id": 18,
+    "categoryId": "games",
+    "title": "The Man Disk 2",
+    "price": 35,
+    "image": "/images/products/TheManDisk2.png"
+  }
+]
