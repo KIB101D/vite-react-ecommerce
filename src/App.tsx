@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import { getCategories, getProducts } from "./api/data";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import { RouterProvider } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
@@ -25,7 +25,7 @@ function App() {
       path: "/",
       element: <Layout products={products} />,
       children: [
-        { path: "", element: <Home categories={categories} /> },
+        { index: true, element: <Home categories={categories} /> },
         {
           path: "category/:CategoryId/",
           element: <CaterogoryPage products={products} />,
@@ -49,6 +49,10 @@ function App() {
         {
           path: "support",
           element: <Support />,
+        },
+        {
+          path: "*",
+          element: <Navigate to={"/"} />,
         },
       ],
     },
