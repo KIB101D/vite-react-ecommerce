@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
 function ProductPage({ products }) {
   const { ProductId } = useParams();
+  const { addToCart } = useCart();
 
   const product = products.find((p) => p.id === Number(ProductId));
 
@@ -31,7 +33,10 @@ function ProductPage({ products }) {
             ${product.price}
           </p>
 
-          <button className="px-6 py-3 mt-6 text-white bg-black rounded-xl hover:bg-gray-800">
+          <button
+            onClick={() => addToCart(product)}
+            className="px-6 py-3 mt-6 text-white bg-black rounded-xl hover:bg-gray-800"
+          >
             Add to cart
           </button>
         </div>
