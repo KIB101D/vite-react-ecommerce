@@ -1,15 +1,20 @@
 import { useCart } from "../hooks/useCart";
 import deleteIcon from "../assets/delete-bin.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import CheckoutModal from "../components/CheckoutModal";
 
-function Cart({ products }) {
-  const { cart, removeFromCart, increment, decrement } = useCart();
+function Cart() {
+  const { cart, removeFromCart, increment, decrement, removeAllFromCart } =
+    useCart();
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
   const shipping = subtotal > 100 ? 0 : 10;
   const total = subtotal + shipping;
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto">
@@ -120,9 +125,23 @@ function Cart({ products }) {
             </div>
           </div>
 
-          <button className="w-full py-3 mt-6 text-white transition bg-black rounded-xl hover:bg-gray-800">
+          <button
+            onClick={() => setIsCheckoutOpen(true)}
+            className="w-full py-3 mt-6 text-white transition bg-black rounded-xl hover:bg-gray-800"
+          >
             Checkout
           </button>
+
+          {isCheckoutOpen && (
+            <CheckoutModal
+              onClose={() => setIsCheckoutOpen(false)}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              itemsCount={itemsCount}
+              removeAllFromCart={removeAllFromCart}
+            />
+          )}
         </div>
       </div>
     </div>
