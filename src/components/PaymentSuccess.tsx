@@ -1,4 +1,8 @@
-function PaymentSuccess({ onContinue }) {
+type PaymentSuccessProps = {
+  onContinue: () => void;
+};
+
+function PaymentSuccess({ onContinue }: PaymentSuccessProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
       {/* Checkmark */}
