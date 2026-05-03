@@ -1,7 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
+import type { Product } from "../Types/types";
 
-function ProductPage({ products }) {
+type ProductPageProps = {
+  products: Product[];
+};
+
+function ProductPage({ products }: ProductPageProps) {
   const { ProductId } = useParams();
   const { addToCart } = useCart();
 
