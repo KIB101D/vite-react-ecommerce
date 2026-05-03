@@ -7,6 +7,15 @@ import ModalWrapper from "./ModalWrapper";
 
 type PaymentStatus = "idle" | "loading" | "success";
 
+type CheckoutModalProps = {
+  onClose: () => void;
+  subtotal: number;
+  shipping: number;
+  total: number;
+  itemsCount: number;
+  removeAllFromCart: () => void;
+};
+
 function CheckoutModal({
   onClose,
   subtotal,
@@ -14,7 +23,7 @@ function CheckoutModal({
   total,
   itemsCount,
   removeAllFromCart,
-}) {
+}: CheckoutModalProps) {
   const [status, setStatus] = useState<PaymentStatus>("idle");
   const navigate = useNavigate();
 
