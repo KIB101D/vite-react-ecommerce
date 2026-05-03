@@ -2,6 +2,9 @@
 
 Simple e-commerce UI built with React + TypeScript + Tailwind.
 
+# Demo
+[react-ecom][https://vite-react-ecommerce-jet.vercel.app/]
+
 ## Features
 
 - Product catalog
