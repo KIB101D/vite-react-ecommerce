@@ -1,14 +1,11 @@
 import { Link, useParams } from "react-router-dom";
+import type { Product } from "../Types/types";
 
-interface Product {
-  id: number;
-  categoryId: string;
-  title: string;
-  price: number;
-  image: string;
-}
+type CategoryPageProps = {
+  products: Product[];
+};
 
-function CategoryPage({ products }) {
+function CategoryPage({ products }: CategoryPageProps) {
   const { CategoryId } = useParams();
 
   const actualCategory = products.filter(
@@ -24,7 +21,7 @@ function CategoryPage({ products }) {
 
       {/* Grid */}
       <div className="grid gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        {actualCategory.map((product: Product) => {
+        {actualCategory.map((product) => {
           return (
             <Link
               to={`/category/${CategoryId}/product/${product.id}`}
