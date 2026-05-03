@@ -5,15 +5,16 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import { RouterProvider } from "react-router-dom";
 import ProductPage from "./pages/ProductPage";
-import CaterogoryPage from "./pages/CategoryPage";
+import CategoryPage from "./pages/CategoryPage";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Support from "./pages/Support";
+import type { Product, Category } from "./Types/types";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     getProducts().then(setProducts);
@@ -28,7 +29,7 @@ function App() {
         { index: true, element: <Home categories={categories} /> },
         {
           path: "category/:CategoryId/",
-          element: <CaterogoryPage products={products} />,
+          element: <CategoryPage products={products} />,
         },
         {
           path: "category/:CategoryId/product/:ProductId",
