@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-function Home({ categories }) {
-  interface Category {
-    id: string;
-    name: string;
-    image: string;
-  }
+import type { Category } from "../Types/types";
 
+type HomeProps = {
+  categories: Category[];
+};
+
+function Home({ categories }: HomeProps) {
   const gradients: Record<string, string> = {
     electronics: "bg-grad-electronics",
     clothing: "bg-grad-clothing",
@@ -22,7 +22,7 @@ function Home({ categories }) {
         Categories
       </h1>
       <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
-        {categories.map((category: Category) => {
+        {categories.map((category) => {
           return (
             <Link
               to={`category/${category.name}`}
