@@ -1,4 +1,16 @@
-function ModalWrapper({ onClose, children, canClose = true }) {
+import type { ReactNode } from "react";
+
+type ModalWrapperProps = {
+  onClose: () => void;
+  children: ReactNode;
+  canClose: boolean;
+};
+
+function ModalWrapper({
+  onClose,
+  children,
+  canClose = true,
+}: ModalWrapperProps) {
   const handleOverlayClick = () => {
     if (canClose) {
       onClose();
