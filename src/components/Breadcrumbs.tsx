@@ -1,6 +1,11 @@
 import { Link, useLocation, useParams } from "react-router-dom";
+import type { Product } from "../Types/types";
 
-function Breadcrumbs({ products }) {
+type BreadcrumbsProps = {
+  products: Product[];
+};
+
+function Breadcrumbs({ products }: BreadcrumbsProps) {
   const { pathname } = useLocation();
   const { ProductId, CategoryId } = useParams();
 
