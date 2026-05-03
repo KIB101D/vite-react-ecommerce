@@ -1,19 +1,26 @@
 import { createContext, useState } from "react";
+import type { Product } from "../Types/types";
+import type { CartItem } from "../Types/types";
 
-export const CartContext = createContext(null);
+type CartContextType = {
+  cart: CartItem[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (productId: number) => void;
+  increment: (id: number) => void;
+  decrement: (id: number) => void;
+  removeAllFromCart: () => void;
+};
 
-export function CartProvider({ children }) {
-  type CartItem = {
-    id: number;
-    categoryId: string;
-    title: string;
-    price: number;
-    image: string;
-    quantity: number;
-  };
+export const CartContext = createContext<CartContextType | null>(null);
+
+type CartProviderProps = {
+  children: React.ReactNode;
+};
+
+export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  function addToCart(product) {
+  function addToCart(product: Product) {
     setCart((prev) => {
       if (prev.some((item) => item.id === product.id)) {
         return prev.map((item) =>
@@ -27,13 +34,13 @@ export function CartProvider({ children }) {
     });
   }
 
-  function removeFromCart(productId) {
+  function removeFromCart(productId: number) {
     setCart((prev) => {
       return prev.filter((item) => productId !== item.id);
     });
   }
 
-  function increment(id) {
+  function increment(id: number) {
     setCart((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
@@ -41,7 +48,7 @@ export function CartProvider({ children }) {
     );
   }
 
-  function decrement(id) {
+  function decrement(id: number) {
     setCart((prev) =>
       prev
         .map((item) =>
