@@ -15,6 +15,7 @@ function Cart() {
   const total = subtotal + shipping;
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const isEmpty = Object.keys(cart).length === 0;
 
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto">
@@ -25,10 +26,26 @@ function Cart() {
       <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
         {/* 🛒 Items */}
         <div className="flex justify-center lg:justify-start">
-          <div className="w-full max-w-2xl space-y-6">
+          <div className="w-full space-y-6 max-w-none">
             {/* Item */}
-            {cart.map((product) => {
-              return (
+            {cart.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <p className="mb-2 text-base font-medium text-gray-800 sm:text-xl">
+                  Your cart is empty 🛒
+                </p>
+
+                <p className="text-xs text-gray-500 sm:text-sm">
+                  Looks like you haven’t added anything yet.{" "}
+                  <Link
+                    to="/"
+                    className="text-gray-800 hover:underline hover:text-indigo-600"
+                  >
+                    Continue shopping
+                  </Link>
+                </p>
+              </div>
+            ) : (
+              cart.map((product) => (
                 <div
                   key={product.id}
                   className="relative p-5 transition bg-white border rounded-xl hover:shadow-lg"
@@ -77,7 +94,7 @@ function Cart() {
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => decrement(product.id)}
-                            className="flex items-center justify-center text-white transition bg-gray-800 rounded-lg w-7 h-7 hover:bg-gray-700"
+                            className="flex items-center justify-center text-gray-800 transition bg-gray-200 rounded-lg w-7 h-7 hover:bg-gray-300"
                           >
                             −
                           </button>
@@ -88,7 +105,7 @@ function Cart() {
 
                           <button
                             onClick={() => increment(product.id)}
-                            className="flex items-center justify-center text-white transition bg-gray-800 rounded-lg w-7 h-7 hover:bg-gray-700"
+                            className="flex items-center justify-center text-gray-800 transition bg-gray-200 rounded-lg w-7 h-7 hover:bg-gray-300"
                           >
                             +
                           </button>
@@ -99,13 +116,13 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))
+            )}
           </div>
         </div>
 
         {/* 💳 Summary */}
-        <div className="h-full p-6 bg-white border shadow-sm rounded-xl">
+        <div className="p-6 bg-white border shadow-sm h-fit rounded-xl lg:sticky lg:top-24">
           <h2 className="mb-4 text-lg font-semibold text-gray-800">Summary</h2>
 
           <div className="space-y-3 text-sm text-gray-600">
@@ -127,11 +144,16 @@ function Cart() {
 
           <button
             onClick={() => setIsCheckoutOpen(true)}
-            className="w-full py-3 mt-6 text-white transition bg-black rounded-xl hover:bg-gray-800"
+            disabled={isEmpty}
+            className={`w-full py-3 mt-6 rounded-xl transition 
+          ${
+            isEmpty
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "bg-black text-white hover:scale-[1.01] hover:bg-gray-800"
+          }`}
           >
             Checkout
           </button>
-
           {isCheckoutOpen && (
             <CheckoutModal
               onClose={() => setIsCheckoutOpen(false)}
