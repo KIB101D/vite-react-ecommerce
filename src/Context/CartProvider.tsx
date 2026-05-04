@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import type { Product } from "../Types/types";
 import type { CartItem } from "../Types/types";
 import { showAddToCartToast } from "../utils/notifications";
+import { showRemoveFromCartToast } from "../utils/notifications";
 
 type CartContextType = {
   cart: CartItem[];
@@ -37,8 +38,13 @@ export function CartProvider({ children }: CartProviderProps) {
   }
 
   function removeFromCart(productId: number) {
-    setCart((prev) => {
-      return prev.filter((item) => productId !== item.id);
+    const item = cart.find((i) => i.id === productId);
+    if (!item) return;
+
+    setCart((prev) => prev.filter((i) => i.id !== productId));
+
+    showRemoveFromCartToast(item, () => {
+      setCart((current) => [...current, item]);
     });
   }
 
