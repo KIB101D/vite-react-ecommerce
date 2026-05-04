@@ -34,3 +34,28 @@ export const showAddToCartToast = (product: Product) => {
     },
   );
 };
+
+export const showRemoveFromCartToast = (item: Product, onUndo: () => void) => {
+  const id = toast.info(
+    <div className="flex items-center justify-center w-full gap-2 text-xs text-gray-700 sm:gap-3 sm:text-sm">
+      <span className="truncate">
+        <span className="font-medium text-gray-900">{item.title}</span> removed
+      </span>
+
+      <button
+        onClick={() => {
+          onUndo();
+          toast.dismiss(id);
+        }}
+        className="text-xs font-medium text-indigo-600 active:opacity-70 sm:px-3 sm:py-1 sm:border sm:border-gray-200 sm:rounded-md sm:hover:bg-gray-50 whitespace-nowrap"
+      >
+        Undo
+      </button>
+    </div>,
+    {
+      duration: 3000,
+      position: "top-center",
+      className: "flex justify-center w-full px-2 sm:px-0",
+    },
+  );
+};
