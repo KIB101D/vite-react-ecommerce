@@ -13,14 +13,14 @@ function CategoryPage({ products }: CategoryPageProps) {
   );
 
   return (
-    <main className="min-h-screen px-6 py-10">
+    <div className="w-full mx-auto max-w-7xl">
       {/* Title */}
-      <h1 className="mb-8 text-4xl font-semibold text-center text-gray-800 capitalize font-heading">
+      <h1 className="mt-2 sm:mt-3 mb-6 text-gray-800 capitalize font-heading font-semibold text-[clamp(1.8rem,3vw,3rem)]">
         {CategoryId}
       </h1>
 
       {/* Grid */}
-      <div className="grid gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid gap-5 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
         {actualCategory.map((product) => {
           return (
             <Link
@@ -29,7 +29,6 @@ function CategoryPage({ products }: CategoryPageProps) {
               key={product.id}
               className="overflow-hidden transition bg-white shadow-sm rounded-lg hover:shadow-md hover:-translate-y-0.5"
             >
-              {/* Image */}
               <div className="overflow-hidden aspect-square">
                 <img
                   src={product.image}
@@ -38,13 +37,12 @@ function CategoryPage({ products }: CategoryPageProps) {
                 />
               </div>
 
-              {/* Content */}
               <div className="p-2">
-                <p className="text-sm text-gray-600 line-clamp-1">
+                <p className="text-[clamp(0.85rem,0.9vw,1.1rem)] text-gray-600 line-clamp-1">
                   {product.title}
                 </p>
 
-                <p className="mt-1 text-sm font-semibold text-gray-900">
+                <p className="mt-1 font-semibold text-gray-900 text-[clamp(0.9rem,1vw,1.25rem)]">
                   ${product.price}
                 </p>
               </div>
@@ -52,7 +50,7 @@ function CategoryPage({ products }: CategoryPageProps) {
           );
         })}
       </div>
-    </main>
+    </div>
   );
 }
 
