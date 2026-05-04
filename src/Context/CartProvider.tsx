@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import type { Product } from "../Types/types";
 import type { CartItem } from "../Types/types";
+import { showAddToCartToast } from "../utils/notifications";
 
 type CartContextType = {
   cart: CartItem[];
@@ -32,6 +33,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
       return [...prev, { ...product, quantity: 1 }];
     });
+    showAddToCartToast(product);
   }
 
   function removeFromCart(productId: number) {
