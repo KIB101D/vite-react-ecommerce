@@ -14,7 +14,7 @@ function Breadcrumbs({ products }: BreadcrumbsProps) {
   const product = products.find((p) => p.id === Number(ProductId));
 
   return (
-    <div className="mt-4 ml-4 text-sm text-gray-500 animate-slide-in">
+    <div className="mt-4 text-sm text-gray-500 animate-slide-in">
       <Link to="/" className="transition hover:text-indigo-600">
         Home
       </Link>
