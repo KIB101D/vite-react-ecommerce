@@ -6,17 +6,18 @@ type ModalWrapperProps = {
   canClose: boolean;
 };
 
+import { createPortal } from "react-dom";
+
 function ModalWrapper({
   onClose,
   children,
   canClose = true,
 }: ModalWrapperProps) {
   const handleOverlayClick = () => {
-    if (canClose) {
-      onClose();
-    }
+    if (canClose) onClose();
   };
-  return (
+
+  return createPortal(
     <div
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
@@ -27,7 +28,8 @@ function ModalWrapper({
       >
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
