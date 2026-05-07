@@ -1,9 +1,31 @@
 import { Link, useParams } from "react-router-dom";
 import type { Product } from "../Types/types";
+import { useState } from "react";
 
 type CategoryPageProps = {
   products: Product[];
 };
+
+function ProductImage({ src, alt }: { src: string; alt: string }) {
+  const [imageError, setImageError] = useState(false);
+
+  if (imageError) {
+    return (
+      <div className="flex items-center justify-center w-full h-full bg-gray-100">
+        <span className="text-xs text-gray-400">No image</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setImageError(true)}
+      className="object-cover w-full h-full transition duration-300 hover:scale-105"
+    />
+  );
+}
 
 function CategoryPage({ products }: CategoryPageProps) {
   const { CategoryId } = useParams();
@@ -30,11 +52,7 @@ function CategoryPage({ products }: CategoryPageProps) {
               className="overflow-hidden transition bg-white shadow-sm rounded-lg hover:shadow-md hover:-translate-y-0.5"
             >
               <div className="overflow-hidden aspect-square">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="object-cover w-full h-full transition duration-300 hover:scale-105"
-                />
+                <ProductImage src={product.image} alt={product.title} />
               </div>
 
               <div className="p-2">
