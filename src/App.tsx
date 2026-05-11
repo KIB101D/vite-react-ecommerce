@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Support from "./pages/Support";
 import type { Product, Category } from "./Types/types";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -50,6 +51,10 @@ function App() {
         {
           path: "support",
           element: <Support />,
+        },
+        {
+          path: "search",
+          element: <SearchPage products={products} />,
         },
         {
           path: "*",
