@@ -28,7 +28,7 @@ function Layout({ products }: LayoutProps) {
             <Breadcrumbs products={products} />
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 pb-3">
             <Outlet />
           </div>
         </main>
