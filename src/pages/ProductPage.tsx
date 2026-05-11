@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import type { Product } from "../Types/types";
 
@@ -11,6 +11,7 @@ function ProductPage({ products }: ProductPageProps) {
   const { addToCart } = useCart();
 
   const product = products.find((p) => p.id === Number(ProductId));
+  const navigate = useNavigate();
 
   if (!product) {
     return (
@@ -41,8 +42,11 @@ function ProductPage({ products }: ProductPageProps) {
 
         {/* Info */}
         <div className="flex gap-4 lg:min-h-full lg:py-6">
+          {/* Main Content */}
           <div className="flex flex-col flex-1">
+            {/* Top Content */}
             <div>
+              {/* Category */}
               <Link
                 to={`/category/${CategoryId}`}
                 className="text-[11px] font-semibold tracking-[0.18em] text-indigo-600 uppercase transition hover:opacity-70 w-fit"
@@ -55,11 +59,15 @@ function ProductPage({ products }: ProductPageProps) {
                 {product.title}
               </h1>
 
+              {/* Tags */}
               <div className="flex flex-wrap gap-2 mt-5">
                 {product.tags.map((tag) => (
                   <button
                     key={tag}
                     className="px-2.5 py-1 text-[11px] text-gray-500 transition bg-gray-100 rounded-md hover:bg-gray-200"
+                    onClick={() => {
+                      navigate(`/search?q=${tag}`);
+                    }}
                   >
                     #{tag}
                   </button>
@@ -67,11 +75,12 @@ function ProductPage({ products }: ProductPageProps) {
               </div>
             </div>
 
+            {/* Spacer */}
             <div className="flex-1 hidden lg:block" />
 
             {/* Purchase Section */}
             <div className="flex flex-col gap-5">
-              {/* Price & Rating */}
+              {/* Price + Rating */}
               <div className="flex items-end gap-4">
                 <p className="text-5xl font-bold tracking-tight text-gray-900">
                   ${product.price}
@@ -91,8 +100,10 @@ function ProductPage({ products }: ProductPageProps) {
                 {product.description}
               </p>
 
+              {/* Stock */}
               <p className="text-sm font-semibold text-green-600">In stock</p>
 
+              {/* Actions */}
               <div className="flex flex-col items-start gap-3 pt-2">
                 <button
                   onClick={() => addToCart(product)}
