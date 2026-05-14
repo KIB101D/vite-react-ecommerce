@@ -3,6 +3,7 @@ import type { Product } from "../Types/types";
 import ProductImage from "../components/ProductImage";
 import { sortProductsByPrice } from "../utils/filterProductsByPrice";
 import { useState } from "react";
+import SortToggleButton from "../components/SortToggleButoon";
 
 type CategoryPageProps = {
   products: Product[];
@@ -24,12 +25,10 @@ function CategoryPage({ products }: CategoryPageProps) {
           {CategoryId}
         </h1>
         <div className="flex items-center justify-end mb-5">
-          <button
-            onClick={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 transition hover:bg-gray-200"
-          >
-            {orderBy === "asc" ? "Lowest first ↑" : "Highest first ↓"}
-          </button>
+          <SortToggleButton
+            orderBy={orderBy}
+            onToggle={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
+          />
         </div>
       </div>
 
@@ -40,8 +39,8 @@ function CategoryPage({ products }: CategoryPageProps) {
 
     grid-cols-[repeat(auto-fit,minmax(160px,1fr))]
 
-    lg:grid-cols-[repeat(auto-fit,minmax(180px,240px))]
-    lg:justify-stretch"
+    xl:grid-cols-[repeat(auto-fit,minmax(180px,240px))]
+    xl:justify-stretch"
       >
         {sortedProducts.map((product) => {
           return (
