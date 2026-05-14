@@ -21,7 +21,7 @@ function Home({ categories }: HomeProps) {
       <h1 className="mb-6 sm:mb-8 text-[clamp(2rem,6vw,3.2rem)] font-semibold text-center text-gray-700 font-heading">
         Categories
       </h1>
-      <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] lg:grid-cols-5">
+      <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] xl:grid-cols-5">
         {categories.map((category) => {
           return (
             <Link
