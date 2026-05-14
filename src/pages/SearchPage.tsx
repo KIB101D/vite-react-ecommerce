@@ -4,6 +4,7 @@ import filterProducts from "../utils/filterProducts";
 import type { Product } from "../Types/types";
 import { sortProductsByPrice } from "../utils/filterProductsByPrice";
 import { useState } from "react";
+import SortToggleButton from "../components/SortToggleButoon";
 
 type SearchPageProps = {
   products: Product[];
@@ -53,22 +54,10 @@ function SearchPage({ products }: SearchPageProps) {
           <span className="hidden px-3 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full md:block">
             {filtered.length} {filtered.length === 1 ? "item" : "items"}
           </span>
-          {/* For all screens */}
-          <button
-            onClick={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 transition hover:bg-gray-200 max-[375px]:hidden"
-          >
-            <span>
-              {orderBy === "asc" ? "Lowest first ↑" : "Highest first ↓"}
-            </span>
-          </button>
-          {/* For smaller mobile screens (375px-320px) */}
-          <button
-            onClick={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
-            className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 transition hover:bg-gray-200 hidden max-[375px]:block whitespace-nowrap"
-          >
-            <span>{orderBy === "asc" ? "Price ↑" : "Price ↓"}</span>
-          </button>
+          <SortToggleButton
+            orderBy={orderBy}
+            onToggle={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
+          />
         </div>
       </div>
 
@@ -79,8 +68,8 @@ function SearchPage({ products }: SearchPageProps) {
 
     grid-cols-[repeat(auto-fit,minmax(160px,1fr))]
 
-    lg:grid-cols-[repeat(auto-fit,minmax(180px,240px))]
-    lg:justify-stretch"
+    xl:grid-cols-[repeat(auto-fit,minmax(180px,240px))]
+    xl:justify-stretch"
       >
         {sortedProducts.map((product) => {
           return (
