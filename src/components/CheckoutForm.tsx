@@ -70,6 +70,8 @@ function CheckoutForm({
             Card number
           </label>
           <input
+            inputMode="numeric"
+            autoComplete="cc-number"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const value = e.target.value
                 .replace(/\D/g, "")
@@ -87,14 +89,39 @@ function CheckoutForm({
 
         {/* Expiry + CVC */}
         <div className="flex gap-3">
-          <input
-            placeholder="MM/YY"
-            className="w-1/2 px-3 py-2 transition border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500"
-          />
-          <input
-            placeholder="CVC"
-            className="w-1/2 px-3 py-2 transition border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500"
-          />
+          <div className="w-1/2">
+            <label className="block mb-1 text-xs text-gray-500">Expiry</label>
+            <input
+              inputMode="numeric"
+              placeholder="MM/YY"
+              required
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                let value = e.target.value.replace(/\D/g, "");
+                if (value.length > 4) value = value.slice(0, 4);
+
+                if (value.length >= 3) {
+                  value = value.slice(0, 2) + "/" + value.slice(2);
+                }
+
+                e.target.value = value;
+              }}
+              className="w-full px-3 py-2 transition border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500"
+            />
+          </div>
+
+          <div className="w-1/2">
+            <label className="block mb-1 text-xs text-gray-500">CVC</label>
+            <input
+              inputMode="numeric"
+              placeholder="123"
+              required
+              maxLength={3}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+              className="w-full px-3 py-2 transition border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500"
+            />
+          </div>
         </div>
       </div>
 
