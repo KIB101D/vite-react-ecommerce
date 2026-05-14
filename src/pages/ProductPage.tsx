@@ -25,10 +25,10 @@ function ProductPage({ products }: ProductPageProps) {
     .slice(0, 3);
 
   return (
-    <main className="pt-2 pb-10">
-      <div className="grid max-w-7xl gap-8 mx-auto lg:grid-cols-[minmax(340px,520px)_1fr]">
+    <main key={product.id} className="pt-2 pb-10">
+      <div className="grid max-w-7xl gap-8 mx-auto md:grid-cols-[minmax(280px,420px)_1fr] lg:grid-cols-[minmax(340px,520px)_1fr]">
         {/* Image */}
-        <div className="overflow-hidden bg-white shadow-sm rounded-2xl aspect-square lg:max-w-[620px]">
+        <div className="overflow-hidden bg-white shadow-sm rounded-2xl aspect-square lg:max-w-[620px] animate-fade-in">
           <img
             src={product.image}
             alt={product.title}
@@ -39,14 +39,10 @@ function ProductPage({ products }: ProductPageProps) {
             className="object-cover w-full h-full"
           />
         </div>
-
         {/* Info */}
-        <div className="flex gap-4 lg:min-h-full lg:py-6">
-          {/* Main Content */}
+        <div className="flex gap-4 lg:min-h-full lg:py-6 animate-fade-in">
           <div className="flex flex-col flex-1">
-            {/* Top Content */}
             <div>
-              {/* Category */}
               <Link
                 to={`/category/${CategoryId}`}
                 className="text-[11px] font-semibold tracking-[0.18em] text-indigo-600 uppercase transition hover:opacity-70 w-fit"
@@ -54,13 +50,12 @@ function ProductPage({ products }: ProductPageProps) {
                 {CategoryId}
               </Link>
 
-              {/* Title */}
-              <h1 className="mt-3 text-5xl font-semibold leading-[0.95] tracking-tight text-gray-900 font-heading">
+              <h1 className="mt-3 text-5xl md:text-4xl lg:text-5xl font-semibold leading-[0.95] tracking-tight text-gray-900 font-heading">
                 {product.title}
               </h1>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-5">
+              <div className="flex flex-wrap gap-2 mt-3 mb-5">
                 {product.tags.map((tag) => (
                   <button
                     key={tag}
@@ -77,12 +72,9 @@ function ProductPage({ products }: ProductPageProps) {
 
             {/* Spacer */}
             <div className="flex-1 hidden lg:block" />
-
-            {/* Purchase Section */}
             <div className="flex flex-col gap-5">
-              {/* Price + Rating */}
               <div className="flex items-end gap-4">
-                <p className="text-5xl font-bold tracking-tight text-gray-900">
+                <p className="text-5xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
                   ${product.price}
                 </p>
 
@@ -100,10 +92,8 @@ function ProductPage({ products }: ProductPageProps) {
                 {product.description}
               </p>
 
-              {/* Stock */}
               <p className="text-sm font-semibold text-green-600">In stock</p>
-
-              {/* Actions */}
+              {/* Button */}
               <div className="flex flex-col items-start gap-3 pt-2">
                 <button
                   onClick={() => addToCart(product)}
