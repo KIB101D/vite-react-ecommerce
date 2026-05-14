@@ -58,13 +58,13 @@ function SearchBar({
           <button
             type="button"
             onClick={onClear}
-            className={`p-2 text-gray-400 transition-all duration-200 hover:text-black ${
+            className={`flex items-center justify-center p-2 text-gray-400 transition-all duration-200 hover:text-black ${
               value
                 ? "opacity-100 scale-100"
                 : "opacity-0 scale-90 pointer-events-none"
             }`}
           >
-            <span className="text-[10px]">✕</span>
+            <span className="leading-none text-[10px]">✕</span>
           </button>
         </div>
       </div>
