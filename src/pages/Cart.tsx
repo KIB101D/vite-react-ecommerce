@@ -23,7 +23,7 @@ function Cart() {
         Your Cart
       </h1>
 
-      <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+      <div className="grid gap-10 lg:grid-cols-[2fr_1fr] animate-fade-in">
         {/* 🛒 Items */}
         <div className="flex justify-center lg:justify-start">
           <div className="w-full space-y-6 max-w-none">
