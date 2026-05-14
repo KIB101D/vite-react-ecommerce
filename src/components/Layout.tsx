@@ -23,7 +23,7 @@ function Layout({ products }: LayoutProps) {
 
         <Header />
 
-        <main className="flex flex-col flex-1 px-4 py-4 sm:px-6 md:px-10 sm:py-6">
+        <main className="flex flex-col flex-1 px-4 py-4 sm:px-6 md:px-5 sm:py-6">
           <div className="w-full mx-auto max-w-7xl">
             <Breadcrumbs products={products} />
           </div>
