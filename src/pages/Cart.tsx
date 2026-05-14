@@ -18,7 +18,7 @@ function Cart() {
   const isEmpty = Object.keys(cart).length === 0;
 
   return (
-    <div className="max-w-6xl px-6 py-10 mx-auto">
+    <div className="max-w-6xl px-4 py-10 mx-auto sm:px-6">
       <h1 className="mb-10 text-3xl font-semibold text-gray-800 font-heading">
         Your Cart
       </h1>
@@ -111,7 +111,7 @@ function Cart() {
                           </button>
                         </div>
 
-                        <p className="font-semibold ">{product.price}$</p>
+                        <p className="font-semibold ">${product.price}</p>
                       </div>
                     </div>
                   </div>
