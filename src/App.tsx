@@ -8,7 +8,6 @@ import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
-import Contact from "./pages/Contact";
 import Support from "./pages/Support";
 import type { Product, Category } from "./Types/types";
 import SearchPage from "./pages/SearchPage";
@@ -43,10 +42,6 @@ function App() {
         {
           path: "about",
           element: <About />,
-        },
-        {
-          path: "contact",
-          element: <Contact />,
         },
         {
           path: "support",
