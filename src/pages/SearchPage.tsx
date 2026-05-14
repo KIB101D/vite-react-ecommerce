@@ -2,6 +2,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import ProductImage from "../components/ProductImage";
 import filterProducts from "../utils/filterProducts";
 import type { Product } from "../Types/types";
+import { sortProductsByPrice } from "../utils/filterProductsByPrice";
+import { useState } from "react";
 
 type SearchPageProps = {
   products: Product[];
@@ -11,6 +13,8 @@ function SearchPage({ products }: SearchPageProps) {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
   const filtered = filterProducts(products, query);
+  const [orderBy, setOrderBy] = useState<"asc" | "desc">("asc");
+  const sortedProducts = sortProductsByPrice(filtered, orderBy);
 
   if (filtered.length === 0) {
     return (
@@ -31,11 +35,12 @@ function SearchPage({ products }: SearchPageProps) {
 
   return (
     <div className="w-full mx-auto max-w-7xl">
-      <div className="flex flex-col items-baseline justify-between gap-4 mb-8 border-b border-gray-100 sm:flex-row">
+      <div className="flex flex-row items-baseline justify-between gap-4 mb-8 border-b border-gray-100">
         <div>
           <h1 className="text-gray-900 font-heading font-semibold tracking-tight text-[clamp(1.6rem,3vw,2.8rem)]">
             Search
           </h1>
+
           <p className="mt-1 text-gray-500">
             Showing results for{" "}
             <span className="italic font-medium text-indigo-600">
@@ -44,20 +49,46 @@ function SearchPage({ products }: SearchPageProps) {
           </p>
         </div>
 
-        <span className="px-3 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full">
-          {filtered.length} {filtered.length === 1 ? "item" : "items"}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="hidden px-3 py-1 text-xs font-medium text-gray-500 bg-gray-100 rounded-full md:block">
+            {filtered.length} {filtered.length === 1 ? "item" : "items"}
+          </span>
+          {/* For all screens */}
+          <button
+            onClick={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
+            className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 transition hover:bg-gray-200 max-[375px]:hidden"
+          >
+            <span>
+              {orderBy === "asc" ? "Lowest first ↑" : "Highest first ↓"}
+            </span>
+          </button>
+          {/* For smaller mobile screens (375px-320px) */}
+          <button
+            onClick={() => setOrderBy(orderBy === "asc" ? "desc" : "asc")}
+            className="px-3 py-1.5 text-sm rounded-lg bg-gray-100 text-gray-600 transition hover:bg-gray-200 hidden max-[375px]:block whitespace-nowrap"
+          >
+            <span>{orderBy === "asc" ? "Price ↑" : "Price ↓"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Grid */}
-      <div className="grid gap-5 grid-cols-[repeat(auto-fit,minmax(180px,240px))] justify-center md:justify-stretch">
-        {filtered.map((product) => {
+      <div
+        className=" 
+    grid gap-5
+
+    grid-cols-[repeat(auto-fit,minmax(160px,1fr))]
+
+    lg:grid-cols-[repeat(auto-fit,minmax(180px,240px))]
+    lg:justify-stretch"
+      >
+        {sortedProducts.map((product) => {
           return (
             <Link
               to={`/category/${product.categoryId}/product/${product.id}`}
               state={{ category: product.categoryId, fromSearch: query }}
               key={product.id}
-              className="overflow-hidden transition bg-white shadow-sm rounded-lg hover:shadow-md hover:-translate-y-0.5"
+              className="overflow-hidden transition bg-white shadow-sm rounded-lg animate-fade-in hover:shadow-md hover:-translate-y-0.5"
             >
               <div className="overflow-hidden aspect-square">
                 <ProductImage src={product.image} alt={product.title} />
