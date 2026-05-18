@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 import type { Product } from "../Types/types";
 import type { CartItem } from "../Types/types";
 import { showAddToCartToast } from "../utils/notifications";
@@ -13,27 +13,69 @@ type CartContextType = {
   removeAllFromCart: () => void;
 };
 
-export const CartContext = createContext<CartContextType | null>(null);
+type CartAction =
+  | { type: "ADD_TO_CART"; payload: Product }
+  | { type: "REMOVE_FROM_CART"; payload: number }
+  | { type: "INCREMENT"; payload: number }
+  | { type: "DECREMENT"; payload: number }
+  | { type: "CLEAR_CART" }
+  | { type: "RESTORE_ITEM"; payload: CartItem };
 
+export const CartContext = createContext<CartContextType | null>(null);
 type CartProviderProps = {
   children: React.ReactNode;
 };
 
-export function CartProvider({ children }: CartProviderProps) {
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  function addToCart(product: Product) {
-    setCart((prev) => {
-      if (prev.some((item) => item.id === product.id)) {
-        return prev.map((item) =>
+function cartReducer(state: CartItem[], action: CartAction) {
+  switch (action.type) {
+    case "ADD_TO_CART": {
+      const product = action.payload;
+      if (state.some((item) => item.id === product.id)) {
+        return state.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         );
       }
+      return [...state, { ...product, quantity: 1 }];
+    }
 
-      return [...prev, { ...product, quantity: 1 }];
-    });
+    case "REMOVE_FROM_CART":
+      return state.filter((i) => i.id !== action.payload);
+
+    case "INCREMENT":
+      return state.map((item) =>
+        item.id === action.payload
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      );
+
+    case "DECREMENT":
+      return state
+        .map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0);
+
+    case "CLEAR_CART":
+      return [];
+
+    case "RESTORE_ITEM":
+      return [...state, action.payload];
+
+    default:
+      return state;
+  }
+}
+
+export function CartProvider({ children }: CartProviderProps) {
+  const initialState: CartItem[] = [];
+  const [cart, dispatch] = useReducer(cartReducer, initialState);
+
+  function addToCart(product: Product) {
+    dispatch({ type: "ADD_TO_CART", payload: product });
     showAddToCartToast(product);
   }
 
@@ -41,33 +83,23 @@ export function CartProvider({ children }: CartProviderProps) {
     const item = cart.find((i) => i.id === productId);
     if (!item) return;
 
-    setCart((prev) => prev.filter((i) => i.id !== productId));
+    dispatch({ type: "REMOVE_FROM_CART", payload: productId });
 
     showRemoveFromCartToast(item, () => {
-      setCart((current) => [...current, item]);
+      dispatch({ type: "RESTORE_ITEM", payload: item });
     });
   }
 
   function increment(id: number) {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
-    );
+    dispatch({ type: "INCREMENT", payload: id });
   }
 
   function decrement(id: number) {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
-        )
-        .filter((item) => item.quantity > 0),
-    );
+    dispatch({ type: "DECREMENT", payload: id });
   }
 
   function removeAllFromCart() {
-    return setCart([]);
+    dispatch({ type: "CLEAR_CART" });
   }
 
   return (
