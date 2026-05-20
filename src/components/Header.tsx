@@ -5,7 +5,6 @@ import SearchBar from "./SearchBar";
 
 function Header() {
   const navigate = useNavigate();
-  const location = useLocation();
   const [query, setQuery] = useState("");
 
   return (
