@@ -36,6 +36,7 @@ A minimalist storefront project built with React and TypeScript, focused on clea
 👉 [ReactShop Live](https://vite-react-ecommerce-jet.vercel.app/) 
 
 ---
+
 ## 🧩 Architecture & Decisions
 
 ### ❗ Problem: Lack of Cart Feedback
@@ -53,8 +54,10 @@ Integrated Sonner toast notifications directly with a centralized cart state pow
 * **The Undo action** dispatches a `RESTORE_ITEM` action, restoring the previous cart state cleanly through the reducer.
 
 <p align="center"> 
+  <img src="./screenshots/addToCartImg.png" width="90%" />
+</p>
+<p align="center"> 
   <img src="./screenshots/undoCartImg.png" width="49%" />
-  <img src="./screenshots/addToCartImg.png" width="49%" />
 </p>
 
 ---
