@@ -57,7 +57,7 @@ Integrated Sonner toast notifications directly with a centralized cart state pow
   <img src="./screenshots/addToCartImg.png" width="90%" />
 </p>
 <p align="center"> 
-  <img src="./screenshots/undoCartImg.png" width="49%" />
+  <img src="./screenshots/undoCartImg.png" width="90%" />
 </p>
 
 ---
