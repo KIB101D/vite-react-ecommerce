@@ -4,18 +4,46 @@ import type { Product } from "../Types/types";
 
 type ProductPageProps = {
   products: Product[];
+  isLoading: boolean;
 };
 
-function ProductPage({ products }: ProductPageProps) {
+function ProductPage({ products, isLoading }: ProductPageProps) {
   const { ProductId, CategoryId } = useParams();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return (
+      <main className="pt-2 pb-10">
+        <div className="grid max-w-7xl gap-8 mx-auto md:grid-cols-[minmax(280px,420px)_1fr] lg:grid-cols-[minmax(340px,520px)_1fr] animate-pulse">
+          {/* Image-skeleton */}
+          <div className="bg-gray-200 shadow-sm rounded-2xl aspect-square lg:max-w-[620px]" />
+
+          {/* info-skeleton */}
+          <div className="flex flex-col justify-between py-6 space-y-6">
+            <div className="space-y-3">
+              <div className="w-24 h-3 bg-gray-200 rounded" />
+              <div className="w-3/4 h-10 bg-gray-200 rounded" />
+              <div className="w-1/2 h-4 bg-gray-200 rounded" />
+            </div>
+            <div className="space-y-4">
+              <div className="w-32 h-12 bg-gray-200 rounded" />
+              <div className="w-full h-20 bg-gray-200 rounded" />
+              <div className="h-12 bg-gray-200 rounded-xl lg:min-w-[400px] lg:w-auto" />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   const product = products.find((p) => p.id === Number(ProductId));
-  const navigate = useNavigate();
 
   if (!product) {
     return (
-      <div className="p-20 text-center text-gray-500">Product not found</div>
+      <div className="p-20 text-3xl font-semibold flex items-center justify-center min-h-[50vh] font-heading">
+        Product not found
+      </div>
     );
   }
 
