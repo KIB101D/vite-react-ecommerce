@@ -29,13 +29,7 @@ function Header() {
             onClear={() => setQuery("")}
             onKeyDown={(e) => {
               if (e.key === "Enter" && query.trim()) {
-                navigate(`/search?q=${query}`, {
-                  state: {
-                    category: location.pathname.includes("/category/")
-                      ? location.pathname.split("/")[2]
-                      : null,
-                  },
-                });
+                navigate(`/search?q=${query.trim()}`);
               }
             }}
           />
