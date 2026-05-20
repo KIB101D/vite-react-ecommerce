@@ -8,18 +8,19 @@ import SortToggleButton from "../components/SortToggleButoon";
 
 type SearchPageProps = {
   products: Product[];
+  isLoading: boolean;
 };
 
-function SearchPage({ products }: SearchPageProps) {
+function SearchPage({ products, isLoading }: SearchPageProps) {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
   const filtered = filterProducts(products, query);
   const [orderBy, setOrderBy] = useState<"asc" | "desc">("asc");
   const sortedProducts = sortProductsByPrice(filtered, orderBy);
 
-  if (filtered.length === 0) {
+  if (filtered.length === 0 && isLoading === false) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="flex items-center justify-center min-h-[50vh]">
         <div className="max-w-md text-center">
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-gray-900 font-heading">
             Nothing found
@@ -30,6 +31,13 @@ function SearchPage({ products }: SearchPageProps) {
             <span className="font-medium text-gray-700">"{query}"</span>
           </p>
         </div>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[70vh]">
+        <div className="border-2 border-gray-200 rounded-full w-14 h-14 border-t-gray-700 animate-spin" />
       </div>
     );
   }
