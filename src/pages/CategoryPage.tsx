@@ -7,9 +7,10 @@ import SortToggleButton from "../components/SortToggleButoon";
 
 type CategoryPageProps = {
   products: Product[];
+  isLoading: boolean;
 };
 
-function CategoryPage({ products }: CategoryPageProps) {
+function CategoryPage({ products, isLoading }: CategoryPageProps) {
   const { CategoryId } = useParams();
   const actualCategory = products.filter(
     (product) => product.categoryId === CategoryId?.toLowerCase(),
@@ -17,9 +18,28 @@ function CategoryPage({ products }: CategoryPageProps) {
   const [orderBy, setOrderBy] = useState<"asc" | "desc">("asc");
   const sortedProducts = sortProductsByPrice(actualCategory, orderBy);
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="border-2 border-gray-200 rounded-full w-14 h-14 border-t-gray-700 animate-spin" />
+      </div>
+    );
+  }
+  if (sortedProducts.length === 0 && isLoading === false) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="max-w-md text-center">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-gray-900 font-heading">
+            Nothing found
+          </h2>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full mx-auto max-w-7xl">
-      <div className="flex flex-row items-baseline justify-between f">
+      <div className="flex flex-row items-baseline justify-between">
         {/* Title */}
         <h1 className="mt-2 sm:mt-3 mb-6 text-gray-800 capitalize font-heading font-semibold text-[clamp(1.8rem,3vw,3rem)]">
           {CategoryId}
