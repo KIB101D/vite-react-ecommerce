@@ -4,9 +4,10 @@ import type { Category } from "../Types/types";
 
 type HomeProps = {
   categories: Category[];
+  isLoading: boolean;
 };
 
-function Home({ categories }: HomeProps) {
+function Home({ categories, isLoading }: HomeProps) {
   const gradients: Record<string, string> = {
     electronics: "bg-grad-electronics",
     clothing: "bg-grad-clothing",
@@ -15,6 +16,25 @@ function Home({ categories }: HomeProps) {
     outdoor: "bg-grad-outdoor",
     games: "bg-grad-games",
   };
+
+  if (isLoading) {
+    return (
+      <main className="flex-1 px-10 py-12 bg-white">
+        <h1 className="mb-6 sm:mb-8 text-[clamp(2rem,6vw,3.2rem)] font-semibold text-center text-gray-700 font-heading">
+          Categories
+        </h1>
+
+        <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(260px,1fr))] xl:grid-cols-5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-gray-200 aspect-square rounded-xl animate-pulse"
+            />
+          ))}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="flex-1 px-10 py-12 bg-white">
