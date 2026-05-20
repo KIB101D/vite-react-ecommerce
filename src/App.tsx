@@ -62,7 +62,7 @@ function App() {
         },
         {
           path: "category/:CategoryId/product/:ProductId",
-          element: <ProductPage products={products} />,
+          element: <ProductPage products={products} isLoading={isLoading} />,
         },
         {
           path: "cart",
