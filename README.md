@@ -53,7 +53,8 @@ Integrated Sonner toast notifications directly with a centralized cart state pow
 * **The Undo action** dispatches a `RESTORE_ITEM` action, restoring the previous cart state cleanly through the reducer.
 
 <p align="center"> 
-  <img src="./screenshots/storefrontShowcase.gif" width="90%" />
+  <img src="./screenshots/undoCartImg.png" width="49%" />
+  <img src="./screenshots/addToCartImg.png" width="49%" />
 </p>
 
 ---
@@ -96,7 +97,7 @@ Using a full-page spinner felt visually disruptive and caused layout jumps.
 Created reusable loading skeletons using Tailwind’s `animate-pulse` utility for the Home and Product pages.
 
 <p align="center"> 
-  <img src="./screenshots/skeleton-loading.gif" width="90%" />
+  <img src="./screenshots/loadingSkeleton.gif" width="90%" />
 </p>
 
 💡 Instead of blocking the interface, the skeletons preserve the layout structure while data is loading, improving perceived responsiveness and keeping the UI visually stable.
