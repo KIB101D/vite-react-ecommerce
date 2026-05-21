@@ -47,12 +47,10 @@ This made interactions feel unclear, especially when removing products accidenta
 ### ✅ Solution: Reducer-Based Cart State with Undo Support
 
 Integrated Sonner toast notifications directly with a centralized cart state powered by `useReducer` and React Context.
-<p align="center"> 
-  <img src="./screenshots/addToCartImg.png" width="90%" />
-</p>
-<p align="center"> 
-  <img src="./screenshots/undoCartImg.png" width="90%" />
-</p>
+<div style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory;">
+  <img src="./screenshots/addToCartImg.png" width="75%" style="flex-shrink: 0; scroll-snap-align: start; border-radius: 8px; border: 1px solid #e1e4e8;" />
+  <img src="./screenshots/undoCartImg.png" width="75%" style="flex-shrink: 0; scroll-snap-align: start; border-radius: 8px; border: 1px solid #e1e4e8;" />
+</div>
 
 * **Adding a product** shows a quick confirmation toast with a shortcut to the cart page.
 * **Cart mutations** such as incrementing, decrementing, and removing items are handled through explicit reducer actions.
