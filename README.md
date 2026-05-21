@@ -41,27 +41,23 @@ A minimalist storefront project built with React and TypeScript, focused on clea
 
 ### ❗ Problem: Lack of Cart Feedback
 
-Adding or removing items from the cart initially provided no visual confirmation.  
-This made interactions feel unclear, especially when removing products accidentally.
+Adding or removing items from the cart initially provided no visual confirmation. This made interactions feel unclear, especially when removing products accidentally.
 
 ### ✅ Solution: Reducer-Based Cart State with Undo Support
 
-Integrated Sonner toast notifications directly with a centralized cart state powered by `useReducer` and React Context.
-<table width="100%">
-  <tr>
-    <td width="50%" align="center" style="border: none;">
-      <img src="./screenshots/addToCartImg.png" width="90%" alt="Add to cart toast" />
-    </td>
-    <td width="50%" align="center" style="border: none;">
-      <img src="./screenshots/undoCartImg.png" width="90%" alt="Undo action toast" />
-    </td>
-  </tr>
-</table>
+Integrated Sonner toast notifications directly with a centralized cart state powered by `useReducer` and React Context to handle mutation feedback.
 
-* **Adding a product** shows a quick confirmation toast with a shortcut to the cart page.
-* **Cart mutations** such as incrementing, decrementing, and removing items are handled through explicit reducer actions.
-* **Removing a product** temporarily stores the deleted item and provides an **Undo** action.
-* **The Undo action** dispatches a `RESTORE_ITEM` action, restoring the previous cart state cleanly through the reducer.
+#### 📦 1. Seamless Item Addition
+Adding a product instantly triggers a confirmation toast with a deep-link shortcut to the cart page.
+<p align="center">
+  <img src="./screenshots/addToCartImg.png" width="60%" alt="Add to cart toast" />
+</p>
+
+#### ⏳ 2. State Snapshot & Undo Rollback
+Removing a product stores a temporary state backup. The toast provides an immediate **Undo** action, which dispatches a `RESTORE_ITEM` action to cleanly roll back the change via the reducer.
+<p align="center">
+  <img src="./screenshots/undoCartImg.png" width="60%" alt="Undo action toast" />
+</p>
 
 ---
 
