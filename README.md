@@ -41,7 +41,8 @@ A minimalist storefront project built with React and TypeScript, focused on clea
 
 ### ❗ Problem: Lack of Cart Feedback
 
-Adding or removing items from the cart initially provided no visual confirmation. This made interactions feel unclear, especially when removing products accidentally.
+Adding or removing items from the cart initially provided no visual confirmation. 
+This made interactions feel unclear, especially when removing products accidentally.
 
 ### ✅ Solution: Reducer-Based Cart State with Undo Support
 
