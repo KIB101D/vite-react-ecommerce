@@ -54,8 +54,9 @@ Adding a product instantly triggers a confirmation toast with a deep-link shortc
   <img src="./screenshots/addToCartImg.png" width="60%" alt="Add to cart toast" />
 </p>
 
-#### ⏳ 2. State Snapshot & Undo Rollback
-Removing a product stores a temporary state backup. The toast provides an immediate **Undo** action, which dispatches a `RESTORE_ITEM` action to cleanly roll back the change via the reducer.
+#### ⏳ 2. Undo Rollback
+Removing a product creates a temporary state snapshot, allowing the reducer to restore items through a dedicated `RESTORE_ITEM` action.
+
 <p align="center">
   <img src="./screenshots/undoCartImg.png" width="60%" alt="Undo action toast" />
 </p>
@@ -69,11 +70,10 @@ A basic title-only search made it difficult to locate products using tags, categ
 ### ✅ Solution: Multi-Field Search Utility
 
 Implemented a reusable filtering utility supporting:
-* product titles,
-* descriptions,
-* category identifiers,
-* nested tags,
-* and exact product ID matching.
+* Product titles and descriptions
+* Category identifiers
+* Nested product tags
+* Exact product ID matching
 
 ```ts
 const filtered = products.filter(
