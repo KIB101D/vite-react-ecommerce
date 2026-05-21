@@ -1,6 +1,6 @@
 # 🛍️ ReactShop 
 
-A minimalist storefront project built with React and TypeScript, focused on clean state management, reusable components, and polished UX interactions.
+A minimalist boutique storefront built with React and TypeScript, focused on clean state management, reusable components, and polished UX interactions.
 
 ---
 
@@ -92,7 +92,7 @@ const filtered = products.filter(
 
 ### ❗ Problem: Blank Loading States
 
-While local JSON loading is nearly instant, real API requests introduce noticeable loading delays.  
+Although local JSON loading is nearly instant, real API requests can introduce noticeable delays.
 Using a full-page spinner felt visually disruptive and caused layout jumps.
 
 ### ✅ Solution: Skeleton Loading Screens
