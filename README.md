@@ -102,11 +102,11 @@ Created reusable loading skeletons using Tailwind’s `animate-pulse` utility fo
 <table align="center">
   <tr>
     <td align="center">
-      <img src="./screenshots/loadingSkeleton.gif" width="100%" />
+      <img src="./screenshots/loadingSkelotonsProduct.gif" width="100%" /> 
       <br />
     </td>
     <td align="center">
-      <img src="./screenshots/loadingSkelotonsProduct.gif" width="100%" />
+      <img src="./screenshots/loadingSkeleton.gif" width="100%" />
       <br />
     </td>
   </tr>
