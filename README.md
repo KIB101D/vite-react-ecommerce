@@ -99,9 +99,18 @@ Using a full-page spinner felt visually disruptive and caused layout jumps.
 
 Created reusable loading skeletons using Tailwind’s `animate-pulse` utility for the Home and Product pages.
 
-<p align="center"> 
-  <img src="./screenshots/loadingSkeleton.gif" width="90%" />
-</p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="./screenshots/loadingSkeleton.gif" width="100%" />
+      <br />
+    </td>
+    <td align="center">
+      <img src="./screenshots/loadingSkelotonsProduct.gif" width="100%" />
+      <br />
+    </td>
+  </tr>
+</table>
 
 💡 Instead of blocking the interface, the skeletons preserve the layout structure while data is loading, improving perceived responsiveness and keeping the UI visually stable.
 
