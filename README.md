@@ -106,7 +106,7 @@ Created reusable loading skeletons using Tailwind’s `animate-pulse` utility fo
 </p>
 
 <p align="center">
-  <img src="./screenshots/loadingSkeletonsProduct.gif" width="90%" />
+  <img src="./screenshots/loadingSkelotonsProduct.gif" width="90%" />
   <br />
   <sub>Product page skeleton state</sub>
 </p>
