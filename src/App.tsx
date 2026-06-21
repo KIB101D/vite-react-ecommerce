@@ -16,6 +16,7 @@ import SearchPage from "./pages/SearchPage";
 import type { Product, Category } from "./Types/types";
 import ErrorMessage from "./components/ErrorMessage";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -96,6 +97,7 @@ function App() {
     <>
       <RouterProvider router={router} />
       <SpeedInsights />
+      <Analytics />
     </>
   );
 }
