@@ -15,6 +15,7 @@ import Support from "./pages/Support";
 import SearchPage from "./pages/SearchPage";
 import type { Product, Category } from "./Types/types";
 import ErrorMessage from "./components/ErrorMessage";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -91,7 +92,12 @@ function App() {
   if (error) {
     return <ErrorMessage message={error} onRetry={loadData} />;
   }
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <SpeedInsights />
+    </>
+  );
 }
 
 export default App;
